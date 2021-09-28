@@ -1,23 +1,26 @@
 import {Router} from "express";
+import multer from "multer";
 
-import { v4 as uuidV4 } from "uuid";
+import { createCategoryController } from "../modules/cars/useCases/createCategory"
+import { listCategoriesController } from "../modules/cars/useCases/listCategories";
+import { importCategoryController } from "../modules/cars/useCases/importCategory";
 
 const categoriesRoutes = Router();
 
-const categories = [];
+const upload = multer({
+    dest: "./tmp",
+})
 
 categoriesRoutes.post("/", (request, response) => {
-    const { name, description } = request.body;
-
-    const category = {
-        name,
-        description,
-        id: uuidV4()
-        };
-
-    categories.push(category);
-
-    return response.status(201).send();
+   return createCategoryController.handle(request, response);
 });
+
+categoriesRoutes.get("/", (request, response) => {
+    return listCategoriesController.handle(request, response);
+})
+
+categoriesRoutes.post("/import", upload.single("file"), (request, response) => {
+    return importCategoryController.handle(request, response);
+})
 
 export { categoriesRoutes };
