@@ -1,14 +1,16 @@
 import { CarsRepositoryInMemory } from "@modules/cars/repositories/in-momory/CarsRepositoryInMemory";
 
-import { ListCarsUseCase } from "./ListCarsUseCase";
+import { ListAvailableCarsUseCase } from "./ListAvailableCarsUseCase";
 
-let listCarsUseCase: ListCarsUseCase;
+let listAvailableCarsUseCase: ListAvailableCarsUseCase;
 let carsRespositoryInMemory: CarsRepositoryInMemory;
 
 describe("List Cars", () => {
   beforeEach(() => {
     carsRespositoryInMemory = new CarsRepositoryInMemory();
-    listCarsUseCase = new ListCarsUseCase(carsRespositoryInMemory);
+    listAvailableCarsUseCase = new ListAvailableCarsUseCase(
+      carsRespositoryInMemory
+    );
   });
 
   it("should be able to list all available cars", async () => {
@@ -22,7 +24,7 @@ describe("List Cars", () => {
       category_id: "038b4af6-a0b6-4e42-89cf-2b892c6aaf83",
     });
 
-    const cars = await listCarsUseCase.execute({});
+    const cars = await listAvailableCarsUseCase.execute({});
 
     expect(cars).toEqual([car]);
   });
@@ -38,7 +40,7 @@ describe("List Cars", () => {
       category_id: "038b4af6-a0b6-4e42-89cf-2b892c6aaf83",
     });
 
-    const cars = await listCarsUseCase.execute({
+    const cars = await listAvailableCarsUseCase.execute({
       brand: "Car_brand",
     });
     expect(cars).toEqual([car]);
@@ -55,7 +57,7 @@ describe("List Cars", () => {
       category_id: "038b4af6-a0b6-4e42-89cf-2b892c6aaf83",
     });
 
-    const cars = await listCarsUseCase.execute({
+    const cars = await listAvailableCarsUseCase.execute({
       name: "Car3",
     });
     expect(cars).toEqual([car]);
@@ -69,11 +71,11 @@ describe("List Cars", () => {
       license_plate: "DEF-2345",
       fine_amount: 40,
       brand: "Car_brand_test",
-      category_id: "038b4af6-a0b6-4e42-89cf-2b892c6aaf83",
+      category_id: "12345",
     });
 
-    const cars = await listCarsUseCase.execute({
-      category_id: "Car3",
+    const cars = await listAvailableCarsUseCase.execute({
+      category_id: "12345",
     });
     expect(cars).toEqual([car]);
   });
