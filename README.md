@@ -38,7 +38,6 @@
 
 **RF**
     Deve ser possivel cadastrar a imagem do carro
-    Deve ser possivel listar todos os carros
 
 **RFN**
     Utilizar o multer para upload dos arquivos
