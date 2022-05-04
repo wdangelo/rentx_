@@ -45,7 +45,7 @@
 **RN**
 
     O usuário de poder cadastrar mais de uma imagem para o mesmo carro
-    O usuário responvel pelo cadastro deve ser administrador
+    O usuário responsavel pelo cadastro deve ser administrador
 
 # Aluguel de carro
 
@@ -57,6 +57,7 @@
     O aluguel deve ter duração minima de 24 horas.
     Não deve ser possivel um aluguel caso ja exista um aberto para o mesmo usuário
     Não deve ser possivel um aluguel caso ja exista um aberto para o mesmo carro
+    O usuário deve estar logado na aplicação
 
 
     

@@ -1,9 +1,9 @@
 import { ICreateRentalDTO } from "@modules/rentals/dto/ICreateRentalDTO";
 import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 
-import { IRentalsRespository } from "../IRentalsRepository";
+import { IRentalsRepository } from "../IRentalsRepository";
 
-class RentalsRepositoryInMemory implements IRentalsRespository {
+class RentalsRepositoryInMemory implements IRentalsRepository {
   rentals: Rental[] = [];
   async findOpenRentalByCar(car_id: string): Promise<Rental> {
     return this.rentals.find(
