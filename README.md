@@ -60,6 +60,20 @@
     O usuário deve estar logado na aplicação
 
 
+# Devolução de carrro
+
+**RF**
+Deve ser possivel realizar a devolução de um carro
+
+**RN**
+Se o carro for devolvido com menos de 24hrs, deverá ser cobrado diária completa.
+Ao realizar a devolução, o carro deverá ser liberado para outro aluguel
+Ao realizar a devolução, o usuário deverá ser liberado para outro aluguel
+Ao realizar a devolução, deverá calcular o total do aluguel
+Caso o horário de devolução seja superior ao horaio previsto pde entrega, deverá ser obrado multa proporcional aos dias de atrazo
+Caso haja multa, deverá ser somado ao total do aluguel
+O usuário deve estar logado na aplicação
+
     
 
 
