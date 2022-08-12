@@ -59,7 +59,6 @@ class CreateRentalUseCase {
       car_id,
       expected_return_date,
     });
-    console.log(car_id);
     await this.carsRepository.updateAvailable(car_id, false);
 
     return rental;
