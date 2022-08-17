@@ -5,6 +5,7 @@ import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepositor
 import { AppError } from "@shared/errors/AppError";
 import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
+import { IMailProvider } from "@shared/container/providers/MailProvider/IMailProvider";
 
 @injectable()
 class SendForgotPassordMailUseCase {
@@ -14,10 +15,12 @@ class SendForgotPassordMailUseCase {
         @inject("UsersTokensRepository")
         private usersTokensRepository: IUsersTokensRepository,
         @inject("DayjsDateProvider")
-        private dateProvider: IDateProvider
+        private dateProvider: IDateProvider,
+        @inject("EtherialMailProvider")
+        private mailProvider: IMailProvider
     ) {}
 
-    async execute(email: string) {
+    async execute(email: string): Promise<void> {
         const user = await this.usersRepository.findByEmail(email);
 
         if(!user) {
@@ -32,7 +35,13 @@ class SendForgotPassordMailUseCase {
             refresh_token: token,
             user_id: user.id,
             expires_date
-        })
+        });
+
+        await this.mailProvider.sendMail(
+            email,
+            "Recuperar senha Rentx",
+            `Link para recuperar a senha: ${ token }`
+        )
 
     }
 }
